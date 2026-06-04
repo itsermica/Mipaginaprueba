@@ -1,0 +1,2426 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>SERMICA – Servicios Mantenimiento Industriales, C.A.</title>
+  <link rel="icon" type="image/x-icon" href="assets/Logo%20Sermica.ico" />
+  <meta name="description"
+    content="SERMICA: soluciones técnicas de mantenimiento industrial para el sector petrolero y petroquímico venezolano." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --white: #ffffff;
+      --bg: #f4f7ff;
+      --blue: #0a6aff;
+      --blue-d: #004ccf;
+      --blue-l: #3d9fff;
+      --navy: #0e2650;
+      --navy-m: #163370;
+      --text: #1a2d5a;
+      --muted: #5a6e9a;
+      --pale: #e8f0fe;
+      --border: rgba(10, 106, 255, .13);
+      --sh: 0 4px 24px rgba(10, 106, 255, .1);
+      --sh-lg: 0 16px 56px rgba(10, 106, 255, .18);
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden
+    }
+
+    /* ── DOTS PATTERN ── */
+    .dots {
+      background-image: radial-gradient(circle, rgba(10, 106, 255, .18) 1.5px, transparent 1.5px);
+      background-size: 18px 18px
+    }
+
+    /* ── SECTION STRIP ── */
+    .s-strip {
+      background: linear-gradient(90deg, var(--navy) 0%, var(--blue-d) 60%, var(--blue) 100%);
+      padding: .55rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .78rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .85);
+      letter-spacing: .06em;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .s-strip::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, .06) 50%, transparent 100%);
+      animation: shimmerStrip 3s infinite
+    }
+
+    @keyframes shimmerStrip {
+      0% {
+        transform: translateX(-100%)
+      }
+
+      100% {
+        transform: translateX(100%)
+      }
+    }
+
+    .s-strip .chevs {
+      color: var(--blue-l);
+      letter-spacing: -.1em;
+      animation: chevPulse 1.4s ease-in-out infinite
+    }
+
+    @keyframes chevPulse {
+
+      0%,
+      100% {
+        opacity: .4;
+        transform: translateX(0)
+      }
+
+      50% {
+        opacity: 1;
+        transform: translateX(4px)
+      }
+    }
+
+    /* ── SECTION NUM ── */
+    .s-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 4rem;
+      font-weight: 800;
+      color: rgba(10, 106, 255, .07);
+      line-height: 1;
+      position: absolute;
+      top: 1.5rem;
+      right: 3rem;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -.04em;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4rem;
+      height: 70px;
+      background: rgba(255, 255, 255, .94);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 14px rgba(10, 106, 255, .07);
+      transition: box-shadow .3s;
+    }
+
+    .nav-logo img {
+      height: 46px;
+      width: auto;
+      object-fit: contain
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .87rem;
+      font-weight: 500;
+      letter-spacing: .02em;
+      transition: color .2s
+    }
+
+    .nav-links a:hover {
+      color: var(--blue)
+    }
+
+    .nav-cta {
+      padding: .52rem 1.4rem;
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: .87rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(10, 106, 255, .38);
+      transition: background .2s, transform .2s, box-shadow .2s
+    }
+
+    .nav-cta:hover {
+      background: var(--blue-d);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 22px rgba(10, 106, 255, .48)
+    }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 110px 4rem 60px;
+      background: linear-gradient(135deg, #fff 0%, #eef5ff 45%, #daeaff 100%);
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(10, 106, 255, .04) 1px, transparent 1px), linear-gradient(90deg, rgba(10, 106, 255, .04) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: radial-gradient(ellipse 90% 90% at 55% 45%, black 30%, transparent 80%)
+    }
+
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(70px);
+      opacity: .22
+    }
+
+    .hero-orb-1 {
+      width: 580px;
+      height: 580px;
+      top: -120px;
+      right: -100px;
+      background: radial-gradient(circle, var(--blue), transparent 70%)
+    }
+
+    .hero-orb-2 {
+      width: 300px;
+      height: 300px;
+      bottom: -80px;
+      left: -80px;
+      background: radial-gradient(circle, var(--blue-l), transparent 70%);
+      opacity: .12
+    }
+
+    /* Floating particles */
+    .particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--blue);
+      opacity: 0;
+      animation: floatParticle var(--dur, 8s) var(--delay, 0s) infinite ease-in-out
+    }
+
+    @keyframes floatParticle {
+      0% {
+        opacity: 0;
+        transform: translateY(0) scale(0)
+      }
+
+      20% {
+        opacity: .6
+      }
+
+      80% {
+        opacity: .3
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-120px) scale(1.5)
+      }
+    }
+
+    .hero-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: .38rem .95rem;
+      background: var(--pale);
+      border: 1px solid rgba(10, 106, 255, .25);
+      border-radius: 100px;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: var(--blue);
+      text-transform: uppercase;
+      margin-bottom: 1.8rem;
+      animation: fadeUp .7s ease both
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+      animation: pulse 2s infinite
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: .3;
+        transform: scale(.7)
+      }
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -.025em;
+      color: var(--navy);
+      animation: fadeUp .7s .1s ease both
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-l) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+
+    .hero-sub {
+      margin-top: 1.3rem;
+      font-size: clamp(.9rem, 1.8vw, 1.05rem);
+      color: var(--muted);
+      line-height: 1.75;
+      animation: fadeUp .7s .22s ease both
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2.2rem;
+      animation: fadeUp .7s .34s ease both
+    }
+
+    .btn-blue {
+      padding: .85rem 2rem;
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: .95rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 6px 22px rgba(10, 106, 255, .38);
+      transition: background .2s, transform .2s, box-shadow .2s
+    }
+
+    .btn-blue:hover {
+      background: var(--blue-d);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(10, 106, 255, .5)
+    }
+
+    .btn-outline {
+      padding: .85rem 2rem;
+      background: transparent;
+      border: 2px solid var(--blue);
+      color: var(--blue);
+      border-radius: 8px;
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .2s
+    }
+
+    .btn-outline:hover {
+      background: var(--pale)
+    }
+
+    /* Hero visual side */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeUp .7s .4s ease both
+    }
+
+    .hero-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1.5px solid rgba(10, 106, 255, .15)
+    }
+
+    .hero-ring-1 {
+      width: 380px;
+      height: 380px;
+      animation: rotateSlow 30s linear infinite
+    }
+
+    .hero-ring-2 {
+      width: 280px;
+      height: 280px;
+      animation: rotateSlow 20s linear infinite reverse
+    }
+
+    @keyframes rotateSlow {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    .hero-logo-wrap {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      background: rgba(255, 255, 255, .85);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+      padding: 2.5rem 3rem;
+      border: 1px solid rgba(10, 106, 255, .15);
+      box-shadow: var(--sh-lg)
+    }
+
+    .hero-logo-wrap img {
+      width: 220px;
+      height: auto
+    }
+
+    .hero-stats-row {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      justify-content: center
+    }
+
+    .hs {
+      text-align: center
+    }
+
+    .hs-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--blue)
+    }
+
+    .hs-lbl {
+      font-size: .7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em
+    }
+
+    .scroll-ind {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .4rem;
+      color: var(--muted);
+      font-size: .7rem;
+      letter-spacing: .12em;
+      animation: fadeUp .7s 1.1s both
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 34px;
+      background: linear-gradient(to bottom, var(--blue), transparent);
+      animation: scrollFade 2s infinite
+    }
+
+    @keyframes scrollFade {
+      0% {
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin: top
+      }
+
+      50% {
+        opacity: 1;
+        transform: scaleY(1)
+      }
+
+      100% {
+        opacity: 0;
+        transform: scaleY(1);
+        transform-origin: bottom
+      }
+    }
+
+    /* ── TRUST ── */
+    #trust {
+      background: var(--navy);
+      padding: 4rem;
+      position: relative;
+      overflow: hidden
+    }
+
+    #trust .dots-corner {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 160px;
+      height: 160px;
+      opacity: .18
+    }
+
+    .trust-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.8rem
+    }
+
+    .trust-lbl {
+      font-size: .73rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      color: rgba(255, 255, 255, .4);
+      text-transform: uppercase
+    }
+
+    .trust-stats {
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+      justify-content: center
+    }
+
+    .t-stat {
+      text-align: center;
+      padding: 0 3rem;
+      border-right: 1px solid rgba(255, 255, 255, .08)
+    }
+
+    .t-stat:last-child {
+      border-right: none
+    }
+
+    .t-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1
+    }
+
+    .t-num em {
+      color: var(--blue-l);
+      font-style: normal
+    }
+
+    .t-lbl {
+      font-size: .78rem;
+      color: rgba(255, 255, 255, .45);
+      margin-top: .4rem;
+      text-transform: uppercase;
+      letter-spacing: .08em
+    }
+
+    .trust-tags {
+      display: flex;
+      gap: .7rem;
+      flex-wrap: wrap;
+      justify-content: center
+    }
+
+    .ttag {
+      padding: .36rem .95rem;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 100px;
+      font-size: .78rem;
+      color: rgba(255, 255, 255, .65);
+      font-weight: 500;
+      transition: border-color .2s, color .2s;
+      cursor: default
+    }
+
+    .ttag:hover {
+      border-color: var(--blue-l);
+      color: #fff
+    }
+
+    /* ── SECTIONS GENERAL ── */
+    .sec {
+      position: relative;
+      padding: 7rem 4rem;
+      overflow: hidden
+    }
+
+    .sec-inner {
+      max-width: 1200px;
+      margin: 0 auto
+    }
+
+    .sec-lbl {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: .6rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem
+    }
+
+    .sec-lbl .chevs {
+      letter-spacing: -.12em;
+      animation: chevPulse 1.4s infinite
+    }
+
+    .sec-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--navy)
+    }
+
+    .sec-title span {
+      background: linear-gradient(135deg, var(--blue), var(--blue-l));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent
+    }
+
+    .sec-sub {
+      font-size: .95rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-top: .7rem;
+      max-width: 500px
+    }
+
+    /* ── SERVICES ── */
+    #services {
+      background: var(--bg)
+    }
+
+    .svc-header {
+      text-align: center;
+      margin-bottom: 4rem
+    }
+
+    .svc-header .sec-sub {
+      margin: auto
+    }
+
+    .svc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem
+    }
+
+    .svc-card {
+      background-color: var(--navy);
+      background-size: cover;
+      background-position: center;
+      border: 1px solid rgba(10, 106, 255, .1);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--sh);
+      transition: transform .35s cubic-bezier(.22, 1, .36, 1), box-shadow .35s, border-color .3s;
+      color: #fff;
+      z-index: 1;
+    }
+
+    .svc-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(9, 21, 53, 0.95) 0%, rgba(9, 21, 53, 0.5) 50%, rgba(9, 21, 53, 0.15) 100%);
+      z-index: -1;
+      transition: opacity .3s;
+    }
+
+    .svc-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-l));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s cubic-bezier(.22, 1, .36, 1);
+      z-index: 2;
+    }
+
+    .svc-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: var(--sh-lg);
+      border-color: rgba(10, 106, 255, .4)
+    }
+
+    .svc-card:hover::before {
+      opacity: 0.9;
+    }
+
+    .svc-card:hover::after {
+      transform: scaleX(1)
+    }
+
+    .svc-card-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, .12);
+      line-height: 1;
+      position: absolute;
+      top: .8rem;
+      right: 1.2rem;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .svc-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 6rem;
+      margin-bottom: .5rem;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, .4)
+    }
+
+    .svc-card p {
+      font-size: .86rem;
+      color: rgba(255, 255, 255, .75);
+      line-height: 1.65;
+      position: relative;
+      z-index: 1
+    }
+
+    .svc-tag {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue-l);
+      position: relative;
+      z-index: 1
+    }
+
+    /* ── WHY ── */
+    #why {
+      background: var(--white)
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 4rem
+    }
+
+    .why-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem
+    }
+
+    .why-item {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      padding: 1.2rem;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      transition: border-color .3s, background .3s, transform .3s;
+    }
+
+    .why-item:hover {
+      border-color: var(--border);
+      background: var(--pale);
+      transform: translateX(6px)
+    }
+
+    .why-num {
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--pale);
+      border: 2px solid rgba(10, 106, 255, .25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .8rem;
+      font-weight: 800;
+      color: var(--blue);
+      transition: background .3s, border-color .3s
+    }
+
+    .why-item:hover .why-num {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue)
+    }
+
+    .why-text h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .3rem
+    }
+
+    .why-text p {
+      font-size: .86rem;
+      color: var(--muted);
+      line-height: 1.65
+    }
+
+    /* Why visual card */
+    .why-card {
+      background: linear-gradient(145deg, #163370 0%, #1a4080 100%);
+      border-radius: 20px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--sh-lg)
+    }
+
+    .why-card-logo {
+      text-align: center;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+      margin-bottom: 1.5rem
+    }
+
+    .why-card-logo img {
+      height: 58px;
+      width: auto;
+      filter: brightness(1.1)
+    }
+
+    .why-card .sec-lbl {
+      color: var(--blue-l);
+      margin-bottom: 1rem
+    }
+
+    .tech-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: .9rem 1.1rem;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .09);
+      border-radius: 10px;
+      margin-bottom: .7rem;
+      transition: background .25s, border-color .25s, transform .25s;
+      cursor: default
+    }
+
+    .tech-row:hover {
+      background: rgba(10, 106, 255, .18);
+      border-color: rgba(10, 106, 255, .4);
+      transform: translateX(4px)
+    }
+
+    .tech-row .ico {
+      font-size: 1.4rem
+    }
+
+    .tech-row h5 {
+      font-size: .9rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: .1rem
+    }
+
+    .tech-row span {
+      font-size: .76rem;
+      color: rgba(255, 255, 255, .45)
+    }
+
+    .why-glow {
+      position: absolute;
+      bottom: -70px;
+      right: -70px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(10, 106, 255, .3), transparent 70%);
+      pointer-events: none
+    }
+
+    /* ── PROCESS ── */
+    #process {
+      background: var(--bg)
+    }
+
+    .process-wrap {
+      margin-top: 4rem;
+      position: relative
+    }
+
+    /* connecting line */
+    .process-line {
+      position: absolute;
+      top: 48px;
+      left: calc(12.5% + 1px);
+      right: calc(12.5% + 1px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-l));
+      z-index: 0;
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform 1.4s cubic-bezier(.22, 1, .36, 1) .3s
+    }
+
+    .process-line.visible {
+      transform: scaleX(1)
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      position: relative;
+      z-index: 1
+    }
+
+    .p-step {
+      background: var(--white);
+      border: 1px solid rgba(10, 106, 255, .1);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: var(--sh);
+      text-align: center;
+      transition: transform .35s cubic-bezier(.22, 1, .36, 1), box-shadow .35s;
+    }
+
+    .p-step:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--sh-lg)
+    }
+
+    .p-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--blue);
+      border: 4px solid var(--white);
+      box-shadow: 0 0 0 2px var(--blue);
+      margin: 0 auto 1.2rem;
+      position: relative;
+      z-index: 2;
+      transition: transform .3s
+    }
+
+    .p-step:hover .p-dot {
+      transform: scale(1.3)
+    }
+
+    .p-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: rgba(10, 106, 255, .12);
+      line-height: 1;
+      margin-bottom: .8rem
+    }
+
+    .p-step h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: .98rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .5rem
+    }
+
+    .p-step p {
+      font-size: .83rem;
+      color: var(--muted);
+      line-height: 1.6
+    }
+
+    /* ── STATS BAND ── */
+    #stats-band {
+      background: linear-gradient(135deg, var(--blue-d) 0%, var(--blue) 60%, #2588ff 100%);
+      padding: 5rem 4rem;
+      position: relative;
+      overflow: hidden
+    }
+
+    #stats-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255, 255, 255, .07) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .07) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    .stats-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      position: relative
+    }
+
+    .s-stat {
+      text-align: center
+    }
+
+    .s-stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, .2)
+    }
+
+    .s-stat-suf {
+      font-size: 2rem;
+      color: rgba(255, 255, 255, .7)
+    }
+
+    .s-stat-lbl {
+      font-size: .8rem;
+      color: rgba(255, 255, 255, .6);
+      margin-top: .5rem;
+      text-transform: uppercase;
+      letter-spacing: .1em
+    }
+
+    .s-stat-icon {
+      font-size: 1.8rem;
+      margin-bottom: .8rem;
+      display: block
+    }
+
+    #stats-band h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 3.5rem;
+      position: relative
+    }
+
+    #stats-band h2 span {
+      color: rgba(255, 255, 255, .55)
+    }
+
+    /* ── CTA ── */
+    #cta {
+      background: var(--white);
+      padding: 7rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden
+    }
+
+    #cta::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(10, 106, 255, .05) 0%, transparent 70%);
+      pointer-events: none
+    }
+
+    #cta h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1
+    }
+
+    #cta p {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 2.2rem;
+      position: relative;
+      z-index: 1
+    }
+
+    .btn-white-blue {
+      display: inline-block;
+      padding: 1rem 2.8rem;
+      background: #fff;
+      color: var(--blue);
+      border: 2px solid var(--blue);
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(10, 106, 255, .15);
+      transition: background .2s, color .2s, transform .2s, box-shadow .2s
+    }
+
+    .btn-white-blue:hover {
+      background: var(--blue);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(10, 106, 255, .4)
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--bg);
+      padding: 7rem 4rem
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 5rem;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto
+    }
+
+    .contact-info h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 2.8vw, 2rem);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 1rem
+    }
+
+    .contact-info p {
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      font-size: .95rem
+    }
+
+    .c-items {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem
+    }
+
+    .c-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem
+    }
+
+    .c-ico {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--pale);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: background .2s, transform .2s
+    }
+
+    .c-item:hover .c-ico {
+      background: var(--blue);
+      transform: scale(1.1)
+    }
+
+    .c-txt {
+      font-size: .88rem;
+      color: var(--muted)
+    }
+
+    .c-txt strong {
+      display: block;
+      font-size: .71rem;
+      color: var(--blue);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: .1rem
+    }
+
+    .c-form {
+      background: var(--white);
+      border: 1px solid rgba(10, 106, 255, .1);
+      border-radius: 18px;
+      padding: 2.2rem;
+      box-shadow: var(--sh-lg);
+      display: flex;
+      flex-direction: column;
+      gap: .95rem
+    }
+
+    .c-form h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .3rem
+    }
+
+    .f-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .9rem
+    }
+
+    .f-grp {
+      display: flex;
+      flex-direction: column;
+      gap: .32rem
+    }
+
+    .f-grp label {
+      font-size: .71rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: .08em;
+      text-transform: uppercase
+    }
+
+    .f-grp input,
+    .f-grp textarea,
+    .f-grp select {
+      background: var(--bg);
+      border: 1.5px solid rgba(10, 106, 255, .15);
+      border-radius: 8px;
+      padding: .68rem .95rem;
+      color: var(--navy);
+      font-size: .88rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .f-grp input:focus,
+    .f-grp textarea:focus,
+    .f-grp select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(10, 106, 255, .1)
+    }
+
+    .f-grp textarea {
+      resize: vertical;
+      min-height: 100px
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: linear-gradient(160deg, #163370 0%, #1a4080 100%)
+    }
+
+    .foot-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 2.5rem 4rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .08)
+    }
+
+    .foot-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .foot-logo img {
+      height: 50px;
+      width: auto
+    }
+
+    .foot-logo .logo-rif {
+      text-align: left;
+      margin-top: .3rem;
+      margin-left: .1rem
+    }
+
+    .foot-tagline {
+      font-size: .82rem;
+      color: rgba(255, 255, 255, .35);
+      margin-top: .35rem
+    }
+
+    .foot-links {
+      display: flex;
+      gap: 1.8rem
+    }
+
+    .foot-links a {
+      font-size: .83rem;
+      color: rgba(255, 255, 255, .45);
+      text-decoration: none;
+      transition: color .2s
+    }
+
+    .foot-links a:hover {
+      color: var(--blue-l)
+    }
+
+    .foot-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .8rem;
+      padding: 1.5rem 4rem
+    }
+
+    .foot-copy {
+      font-size: .75rem;
+      color: rgba(255, 255, 255, .45)
+    }
+
+    .foot-badge {
+      font-size: .73rem;
+      color: rgba(255, 255, 255, .4)
+    }
+
+    .foot-badge span {
+      color: var(--blue-l)
+    }
+
+    /* RIF label under logo */
+    .logo-rif {
+      display: block;
+      font-size: .63rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: rgba(255, 255, 255, .45);
+      text-align: center;
+      margin-top: .25rem
+    }
+
+    .logo-rif-dark {
+      display: block;
+      font-size: .62rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: var(--muted);
+      text-align: center;
+      margin-top: .2rem
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .anim-up {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity .7s ease, transform .7s ease
+    }
+
+    .anim-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity .7s ease, transform .7s ease
+    }
+
+    .anim-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity .7s ease, transform .7s ease
+    }
+
+    .anim-up.in,
+    .anim-left.in,
+    .anim-right.in {
+      opacity: 1;
+      transform: none
+    }
+
+    /* Stagger delays */
+    .d1 {
+      transition-delay: .1s
+    }
+
+    .d2 {
+      transition-delay: .2s
+    }
+
+    .d3 {
+      transition-delay: .3s
+    }
+
+    .d4 {
+      transition-delay: .4s
+    }
+
+    .d5 {
+      transition-delay: .5s
+    }
+
+    .d6 {
+      transition-delay: .6s
+    }
+
+    /* Card shimmer on hover */
+    .p-step {
+      background: var(--white)
+    }
+
+    /* Floating animation for hero logo */
+    @keyframes floatY {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-10px)
+      }
+    }
+
+    .float-anim {
+      animation: floatY 4s ease-in-out infinite
+    }
+
+    /* Dots corner decoration */
+    .dc {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background-image: radial-gradient(circle, rgba(10, 106, 255, .2) 1.5px, transparent 1.5px);
+      background-size: 14px 14px
+    }
+
+    .dc-tl {
+      top: 1.5rem;
+      left: 1.5rem
+    }
+
+    .dc-br {
+      bottom: 1.5rem;
+      right: 1.5rem
+    }
+
+    .dc-tr {
+      top: 1.5rem;
+      right: 1.5rem
+    }
+
+    /* ── ALIADOS ── */
+    #aliados {
+      background: var(--white)
+    }
+
+    .aliados-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.4rem;
+      margin-top: 3rem
+    }
+
+    .aliado-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      height: 200px;
+      background: #e8f0fe;
+      box-shadow: var(--sh);
+      border: 1px solid rgba(10, 106, 255, .1);
+      display: flex;
+      align-items: flex-end;
+      transition: transform .35s cubic-bezier(.22, 1, .36, 1), box-shadow .35s;
+      cursor: default;
+    }
+
+    .aliado-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: var(--sh-lg)
+    }
+
+    .aliado-bg {
+      position: absolute;
+      inset: 0;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-color: #f0f5ff;
+      transition: transform .5s ease;
+    }
+
+    .aliado-card:hover .aliado-bg {
+      transform: scale(1.06)
+    }
+
+    .aliado-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(9, 21, 53, .82) 0%, rgba(9, 21, 53, .1) 60%, transparent 100%);
+      transition: opacity .3s;
+    }
+
+    .aliado-card:hover .aliado-overlay {
+      opacity: .9
+    }
+
+    .aliado-name {
+      position: relative;
+      z-index: 2;
+      padding: .9rem 1.1rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: .88rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: .02em;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, .5);
+    }
+
+    .aliado-badge {
+      display: inline-block;
+      margin-left: .5rem;
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--blue-l);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:960px) {
+      nav {
+        padding: 0 1.5rem
+      }
+
+      .nav-links {
+        display: none
+      }
+
+      .sec,
+      .hero {
+        padding: 4rem 1.5rem
+      }
+
+      #services,
+      #why,
+      #process,
+      #contact,
+      #stats-band,
+      #cta,
+      #trust,
+      #aliados,
+      #proyectos {
+        padding: 4rem 1.5rem
+      }
+
+      .hero-wrap {
+        grid-template-columns: 1fr;
+        gap: 2rem
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem
+      }
+
+      .svc-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .process-line {
+        display: none
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem
+      }
+
+      .stats-inner {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .foot-top,
+      .foot-bottom {
+        padding: 1.5rem
+      }
+
+      .trust-stats {
+        gap: .5rem
+      }
+
+      .t-stat {
+        padding: 0 1.5rem
+      }
+
+      .aliados-grid {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media(max-width:560px) {
+      .svc-grid {
+        grid-template-columns: 1fr
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr
+      }
+
+      .f-row {
+        grid-template-columns: 1fr
+      }
+
+      .stats-inner {
+        grid-template-columns: 1fr
+      }
+
+      .foot-top {
+        flex-direction: column;
+        text-align: center
+      }
+    }
+
+    /* ── TRABAJOS GRID ── */
+    .trabajos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      margin-top: 3.5rem;
+    }
+
+    .trabajo-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(10, 106, 255, .08);
+      box-shadow: 0 4px 24px rgba(10, 106, 255, .08);
+      transition: transform .35s cubic-bezier(.22, 1, .36, 1), box-shadow .35s, border-color .3s;
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .trabajo-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(10, 106, 255, .16);
+      border-color: rgba(10, 106, 255, .25);
+    }
+
+    .trabajo-img {
+      position: relative;
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+      background-color: #dae8ff;
+      overflow: hidden;
+    }
+
+    .trabajo-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10, 38, 80, .65) 0%, transparent 60%);
+      transition: opacity .35s;
+    }
+
+    .trabajo-card:hover .trabajo-img-overlay {
+      opacity: 0.8;
+    }
+
+    .trabajo-card:hover .trabajo-img {
+      background-size: 110%;
+    }
+
+    .trabajo-img {
+      background-size: 100%;
+      transition: background-size .5s ease;
+    }
+
+    .trabajo-num {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 2;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      background: rgba(10, 106, 255, .92);
+      color: #fff;
+      padding: .28rem .8rem;
+      border-radius: 100px;
+      backdrop-filter: blur(6px);
+    }
+
+    .trabajo-body {
+      padding: 1.6rem 1.7rem 1.8rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .trabajo-cat {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: .75rem;
+    }
+
+    .trabajo-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.3;
+      margin-bottom: .75rem;
+    }
+
+    .trabajo-card p {
+      font-size: .84rem;
+      color: var(--muted);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .trabajo-norm {
+      margin-top: 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(10, 106, 255, .7);
+      padding: .3rem .85rem;
+      background: rgba(10, 106, 255, .06);
+      border: 1px solid rgba(10, 106, 255, .14);
+      border-radius: 100px;
+      width: fit-content;
+    }
+
+    @media(max-width:960px) {
+      .trabajos-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width:560px) {
+      .trabajos-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo"><img src="assets/sermica-logo.png" alt="SERMICA" /><span
+        class="logo-rif-dark">J-40582887-0</span></a>
+    <ul class="nav-links">
+      <li><a href="#services">Servicios</a></li>
+      <li><a href="#aliados">Aliados</a></li>
+      <li><a href="#proyectos">Trabajos</a></li>
+      <li><a href="#why">Por Qué Nosotros</a></li>
+      <li><a href="#process">Proceso</a></li>
+      <li><a href="#contact">Contacto</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta" id="nav-cta">Solicitar Evaluación</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="particles" id="particles"></div>
+
+    <div class="hero-wrap">
+      <div class="hero-content">
+        <div class="hero-badge">● Sector Petrolero &amp; Petroquímico</div>
+        <h1>Líderes en el<br><span>mantenimiento industrial.</span></h1>
+        <p class="hero-sub">Soluciones técnicas de mantenimiento industrial con trazabilidad operativa, evaluaciones
+          predictivas y tecnología de vanguardia para empresas del sector energético venezolano.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-blue" id="hero-cta">Solicitar Evaluación</a>
+          <a href="#services" class="btn-outline" id="hero-svc">Ver Servicios</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-ring hero-ring-1"></div>
+        <div class="hero-ring hero-ring-2"></div>
+        <div class="hero-logo-wrap float-anim">
+          <img src="assets/sermica-logo.png" alt="SERMICA" />
+          <span class="logo-rif-dark">J-40582887-0</span>
+          <div class="hero-stats-row">
+            
+            <div class="hs">
+              <div class="hs-num">100+</div>
+              <div class="hs-lbl">Equipos</div>
+            </div>
+            <div class="hs">
+              <div class="hs-num">24/7</div>
+              <div class="hs-lbl">Soporte</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-ind">
+      <div class="scroll-line"></div><span>EXPLORAR</span>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="s-strip"><span class="chevs">&rsaquo;&rsaquo;&rsaquo;</span> Somos tu aliado comercial y especialista de
+    confianza, somos <strong>SERMICA</strong> <span class="chevs">&lsaquo;&lsaquo;&lsaquo;</span></div>
+
+  <!-- TRUST -->
+  <div id="trust">
+    <div class="dc dc-tr dots"></div>
+    <div class="trust-inner">
+      <p class="trust-lbl">Confianza del sector energético venezolano</p>
+      <div class="trust-stats anim-up">
+        
+        <div class="t-stat">
+          <div class="t-num" id="tn2">100<em>+</em></div>
+          <div class="t-lbl">Equipos intervenidos</div>
+        </div>
+        <div class="t-stat">
+          <div class="t-num">100<em>%</em></div>
+          <div class="t-lbl">Trazabilidad</div>
+        </div>
+        <div class="t-stat">
+          <div class="t-num">24<em>/7</em></div>
+          <div class="t-lbl">Soporte técnico</div>
+        </div>
+      </div>
+      <div class="trust-tags anim-up d2">
+        <span class="ttag">🏭 Sector Público</span>
+        <span class="ttag">🤝 Empresas Mixtas</span>
+        <span class="ttag">🏢 Sector Privado</span>
+        <span class="ttag">⛽ Petróleo y Gas</span>
+        <span class="ttag">🧪 Petroquímica</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STRIP -->
+  <div class="s-strip"><span class="chevs">&rsaquo;&rsaquo;&rsaquo;</span> Calidad garantizada en cada servicio
+    realizado &nbsp;·&nbsp; <strong>SERMICA, C.A.</strong> <span class="chevs">&lsaquo;&lsaquo;&lsaquo;</span></div>
+
+  <!-- SERVICES -->
+  <section id="services" class="sec">
+    <div class="dc dc-tl dots"></div>
+    <div class="dc dc-br dots"></div>
+    <div class="s-num">02</div>
+    <div class="sec-inner">
+      <div class="svc-header anim-up">
+        <div class="sec-lbl"><span class="chevs">&rsaquo;&rsaquo;&rsaquo;</span> Portafolio de Servicios</div>
+        <h2 class="sec-title">Ingeniería de precisión<br>para <span>equipos críticos.</span></h2>
+        <p class="sec-sub">Cada intervención, respaldada por protocolos de calidad y registros de trazabilidad
+          completos.</p>
+      </div>
+      <div class="svc-grid">
+        <div class="svc-card anim-up d1" id="svc1" style="background-image: url('assets/servicio-bombas.jpg')">
+          <div class="svc-card-num">01</div>
+          <h3>Bombas Centrífugas</h3>
+          <p>Diagnóstico, rehabilitación y puesta en marcha de bombas centrífugas horizontales y verticales para fluidos
+            de proceso, agua y crudos pesados.</p>
+          <span class="svc-tag">↗ Servicio Principal</span>
+        </div>
+        <div class="svc-card anim-up d2" id="svc2" style="background-image: url('assets/servicio-motores.jpg')">
+          <div class="svc-card-num">02</div>
+          <h3>Motores Eléctricos y Diésel</h3>
+          <p>Mantenimiento preventivo y correctivo de motores de inducción, síncronos y grupos diésel, con pruebas
+            dieléctricas y balanceo dinámico.</p>
+          <span class="svc-tag">↗ Alta Demanda</span>
+        </div>
+        <div class="svc-card anim-up d3" id="svc3" style="background-image: url('assets/servicio-fabricacion.jpg')">
+          <div class="svc-card-num">03</div>
+          <h3>Fabricación</h3>
+          <p>Fabricación y mecanizado de piezas industriales de precisión para equipos del sector petrolero y
+            petroquímico, con control dimensional riguroso.</p>
+          <span class="svc-tag">↗ Especialidad Técnica</span>
+        </div>
+        <div class="svc-card anim-up d2" id="svc4" style="background-image: url('assets/servicio-cabezales.jpg')">
+          <div class="svc-card-num">04</div>
+          <h3>Cabezales de Pozo</h3>
+          <p>Reparación y reacondicionamiento de cabezales de pozo conforme a estándares API, garantizando estanqueidad
+            y presión de operación.</p>
+          <span class="svc-tag">↗ Sector Upstream</span>
+        </div>
+        <div class="svc-card anim-up d3" id="svc5" style="background-image: url('assets/servicio-lubricacion.jpg')">
+          <div class="svc-card-num">05</div>
+          <h3>Lubricación Industrial</h3>
+          <p>Diseño, instalación y mantenimiento de sistemas de lubricación centralizada, análisis de aceite y
+            optimización de intervalos de cambio.</p>
+          <span class="svc-tag">↗ Mantenimiento Predictivo</span>
+        </div>
+        <div class="svc-card anim-up d4" id="svc6" style="background-image: url('assets/servicio-predictivo.jpg')">
+          <div class="svc-card-num">06</div>
+          <h3>Evaluaciones Predictivas</h3>
+          <p>Análisis de vibraciones, termografía infrarroja y alineación láser para detección temprana de fallas y
+            extensión de vida útil.</p>
+          <span class="svc-tag">↗ Tecnología SERMICA</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="s-strip"><span class="chevs">&rsaquo;&rsaquo;&rsaquo;</span> Experiencia comprobada en el sector petrolero
+    y petroquímico &nbsp;·&nbsp; <strong>SERMICA</strong></div>
+
+  <!-- WHY -->
+  <section id="why" class="sec">
+    <div class="s-num">03</div>
+    <div class="dc dc-br dots"></div>
+    <div class="sec-inner">
+      <div class="anim-left">
+        <div class="sec-lbl"><span class="chevs">&rsaquo;&rsaquo;&rsaquo;</span> Por Qué Elegir SERMICA</div>
+        <h2 class="sec-title">Más que mantenimiento.<br><span>Fiabilidad operativa.</span></h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-list">
+          <div class="why-item anim-left d1">
+            <div class="why-num">01</div>
+            <div class="why-text">
+              <h4>Trazabilidad Operativa Total</h4>
+              <p>Cada intervención se documenta con registros fotográficos, mediciones y reportes técnicos. Cero
+                incertidumbre sobre el estado de sus equipos.</p>
+            </div>
+          </div>
+          <div class="why-item anim-left d2">
+            <div class="why-num">02</div>
+            <div class="why-text">
+              <h4>Diagnóstico Predictivo Avanzado</h4>
+              <p>Detectamos fallas antes de que ocurran. Reducimos paradas no planificadas hasta en un 70%, protegiendo
+                la continuidad operativa.</p>
+            </div>
+          </div>
+          <div class="why-item anim-left d3">
+            <div class="why-num">03</div>
+            <div class="why-text">
+              <h4>Thermojet y Balanceo Dinámico</h4>
+              <p>Tratamiento térmico controlado y balanceo de precisión ISO 1940 que garantizan resultados superiores
+                sin daño a componentes críticos.</p>
+            </div>
+          </div>
+          <div class="why-item anim-left d4">
+            <div class="why-num">04</div>
+            <div class="why-text">
+              <h4>Equipo Certificado y Especializado</h4>
+              <p>Técnicos con formación continua en estándares API, ISO y NFPA, respaldados por amplia experiencia en el sector energético.</p>
+            </div>
+          </div>
+        </div>
+        <div class="why-card anim-right d1">
+          <div class="why-card-logo"><img src="assets/sermica-logo.png" alt="SERMICA" /><span
+              class="logo-rif">J-40582887-0</span></div>
+          <div class="sec-lbl" style="margin-bottom:.8rem"><span class="chevs">&rsaquo;&rsaquo;&rsaquo;</span>
+            Tecnología Propietaria</div>
+          <div class="tech-row" id="tech1">
+            <div class="ico">🔩</div>
+            <div>
+              <h5>TORNOS</h5><span>Mecanizado de precisión para piezas y componentes industriales</span>
+            </div>
+          </div>
+          <div class="tech-row" id="tech2">
+            <div class="ico">🔧</div>
+            <div>
+              <h5>PRENSA HIDRÁULICA</h5><span>Prensado y ajuste de acoplaciones y bulones de alta presión</span>
+            </div>
+          </div>
+          <div class="tech-row" id="tech3">
+            <div class="ico">⚖️</div>
+            <div>
+              <h5>BALANCEO DINÁMICO</h5><span>Balanceo ISO 1940 de rotores y componentes giratorios con precisión
+                sub-micrométrica</span>
+            </div>
+          </div>
+          <div class="tech-row" id="tech4">
+            <div class="ico">🔥</div>
+            <div>
+              <h5>TURBOCLEAN</h5><span>Limpieza térmica controlada de bobinados y componentes eléctricos</span>
+            </div>
+          </div>
+          <div class="tech-row" id="tech5">
+            <div class="ico">⚡</div>
+            <div>
+              <h5>HORNO ELÉCTRICO</h5><span>Tratamiento térmico de sellados, rodamientos y piezas metálicas</span>
+            </div>
+          </div>
+          <div class="why-glow"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="s-strip"><span class="chevs">&rsaquo;&rsaquo;&rsaquo;</span> Trazabilidad · Predictivo · Precisión ·
+    Confiabilidad &nbsp;·&nbsp; <strong>SERMICA</strong></div>
+
+  <!-- PROCESS -->
+  <section id="process" class="sec">
+    <div class="s-num">04</div>
+    <div class="dc dc-tl dots"></div>
+    <div class="sec-inner">
+      <div class="anim-up" style="text-align:center;margin-bottom:0">
+        <div class="sec-lbl" style="justify-content:center"><span class="chevs">&rsaquo;&rsaquo;&rsaquo;</span> Nuestro
+          Proceso</div>
+        <h2 class="sec-title" style="text-align:center">De la falla a la <span>operación plena.</span></h2>
+        <p class="sec-sub" style="margin:auto;text-align:center">Un modelo estructurado, trazable y orientado a
+          resultados medibles en cada etapa.</p>
+      </div>
+      <div class="process-wrap">
+        <div class="process-line" id="pLine"></div>
+        <div class="process-grid">
+          <div class="p-step anim-up d1">
+            <div class="p-dot"></div>
+            <div class="p-num">01</div>
+            <h4>Recepción y Diagnóstico</h4>
+            <p>Evaluación técnica del equipo, registro fotográfico inicial e informe de condición detallado.</p>
+          </div>
+          <div class="p-step anim-up d2">
+            <div class="p-dot"></div>
+            <div class="p-num">02</div>
+            <h4>Propuesta Técnica</h4>
+            <p>Plan de intervención con alcance, materiales, tiempos de entrega y garantía de servicio.</p>
+          </div>
+          <div class="p-step anim-up d3">
+            <div class="p-dot"></div>
+            <div class="p-num">03</div>
+            <h4>Ejecución Controlada</h4>
+            <p>Trabajo en taller o campo con supervisión técnica y control de calidad en cada etapa.</p>
+          </div>
+          <div class="p-step anim-up d4">
+            <div class="p-dot"></div>
+            <div class="p-num">04</div>
+            <h4>Entrega y Trazabilidad</h4>
+            <p>Protocolo de pruebas, reporte final y registro digital permanente en historial del equipo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAND -->
+  <div id="stats-band">
+    <div class="dc dc-tl dots" style="opacity:.15"></div>
+    <div class="sec-inner" style="max-width:1200px;margin:0 auto">
+      <h2 class="anim-up">Resultados que <span>hablan por sí solos.</span></h2>
+      <div class="stats-inner">
+        
+        <div class="s-stat anim-up d2"><span class="s-stat-icon">⚙️</span>
+          <div class="s-stat-num"><span id="sb2">0</span><span class="s-stat-suf">+</span></div>
+          <div class="s-stat-lbl">Equipos intervenidos</div>
+        </div>
+        <div class="s-stat anim-up d3"><span class="s-stat-icon">📋</span>
+          <div class="s-stat-num"><span id="sb3">0</span><span class="s-stat-suf">%</span></div>
+          <div class="s-stat-lbl">Trazabilidad garantizada</div>
+        </div>
+        <div class="s-stat anim-up d4"><span class="s-stat-icon">🔧</span>
+          <div class="s-stat-num"><span id="sb4">0</span><span class="s-stat-suf">%</span></div>
+          <div class="s-stat-lbl">Reducción de paradas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALIADOS -->
+  <section id="aliados" class="sec">
+    <div class="dc dc-tr dots"></div>
+    <div class="s-num">05</div>
+    <div class="sec-inner">
+      <div class="svc-header anim-up" style="text-align:center;margin-bottom:0">
+        <div class="sec-lbl" style="justify-content:center"><span class="chevs">&rsaquo;&rsaquo;&rsaquo;</span> Aliados
+          Comerciales</div>
+        <h2 class="sec-title">Empresas que <span>confían en SERMICA.</span></h2>
+        <p class="sec-sub">Respaldo institucional y relaciones comerciales sólidas con las principales corporaciones del
+          sector petrolero nacional.</p>
+      </div>
+      <div class="aliados-grid">
+        <div class="aliado-card anim-up d1">
+          <div class="aliado-bg" style="background-image:url('assets/aliado-pdvsa-petrocedeno.jpg')"></div>
+          <div class="aliado-overlay"></div>
+          <div class="aliado-name">PDVSA Petrocedéño <span class="aliado-badge">↗ Aliado</span></div>
+        </div>
+        <div class="aliado-card anim-up d2">
+          <div class="aliado-bg" style="background-image:url('assets/aliado-pequiven.jpg')"></div>
+          <div class="aliado-overlay"></div>
+          <div class="aliado-name">Pequiven <span class="aliado-badge">↗ Aliado</span></div>
+        </div>
+        <div class="aliado-card anim-up d3">
+          <div class="aliado-bg" style="background-image:url('assets/aliado-new-project.jpg')"></div>
+          <div class="aliado-overlay"></div>
+          <div class="aliado-name">New Project <span class="aliado-badge">↗ Aliado</span></div>
+        </div>
+        <div class="aliado-card anim-up d4">
+          <div class="aliado-bg" style="background-image:url('assets/aliado-camimpeg.jpg')"></div>
+          <div class="aliado-overlay"></div>
+          <div class="aliado-name">CAMIMPEG <span class="aliado-badge">↗ Aliado</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="s-strip"><span class="chevs">&rsaquo;&rsaquo;&rsaquo;</span> Trabajamos junto a los mejores del sector
+    energético venezolano &nbsp;·&nbsp; <strong>SERMICA</strong></div>
+
+  <!-- TRABAJOS -->
+  <section id="proyectos" class="sec">
+    <div class="dc dc-tl dots"></div>
+    <div class="s-num">06</div>
+    <div class="sec-inner">
+      <div class="anim-up" style="text-align:center">
+        <div class="sec-lbl" style="justify-content:center"><span class="chevs">&rsaquo;&rsaquo;&rsaquo;</span> Nuestros
+          Trabajos</div>
+        <h2 class="sec-title" style="text-align:center">Intervenciones que <span>generan resultados.</span></h2>
+        <p class="sec-sub" style="margin:auto;text-align:center">Un recorrido por algunos de los trabajos más
+          representativos ejecutados por SERMICA en el sector.</p>
+      </div>
+
+      <div class="trabajos-grid anim-up d2">
+
+        <!-- TRABAJO 01 -->
+        <div class="trabajo-card">
+          <div class="trabajo-img" style="background-image:url('assets/proyecto-01.jpg')">
+            <div class="trabajo-img-overlay"></div>
+            <span class="trabajo-num">01</span>
+          </div>
+          <div class="trabajo-body">
+            <div class="trabajo-cat">⚡ Motores Eléctricos</div>
+            <h3>Reparación y Rebobinado de Motores Eléctricos</h3>
+            <p>Reparación de motores eléctricos de baja y media tensión, a través del rebobinado, limpieza, secado y ajustes mecánicos y eléctricos, según la norma EASA y IEEE.</p>
+            <div class="trabajo-norm">EASA &nbsp;·&nbsp; IEEE</div>
+          </div>
+        </div>
+
+        <!-- TRABAJO 02 -->
+        <div class="trabajo-card">
+          <div class="trabajo-img" style="background-image:url('assets/proyecto-02.jpg')">
+            <div class="trabajo-img-overlay"></div>
+            <span class="trabajo-num">02</span>
+          </div>
+          <div class="trabajo-body">
+            <div class="trabajo-cat">🔩 Soldadura Industrial</div>
+            <h3>Aporte de Material en Cajeras de Rodamientos</h3>
+            <p>Aporte de material en cajeras de rodamientos, con soldadura SMAW y TIG, para restablecer las tolerancias entre rodamientos y cajeras.</p>
+            <div class="trabajo-norm">SMAW &nbsp;·&nbsp; TIG</div>
+          </div>
+        </div>
+
+        <!-- TRABAJO 03 -->
+        <div class="trabajo-card">
+          <div class="trabajo-img" style="background-image:url('assets/proyecto-03.jpg')">
+            <div class="trabajo-img-overlay"></div>
+            <span class="trabajo-num">03</span>
+          </div>
+          <div class="trabajo-body">
+            <div class="trabajo-cat">🎨 Protección Anticorrosiva</div>
+            <h3>Aplicación de Pintura Anticorrosiva en Bombas API 610</h3>
+            <p>Aplicación de fondo y pintura en bombas centrífugas tipo API 610, ajustados a los sistemas de pinturas anticorrosivas según las normas PDVSA y NACE.</p>
+            <div class="trabajo-norm">API 610 &nbsp;·&nbsp; PDVSA &nbsp;·&nbsp; NACE</div>
+          </div>
+        </div>
+
+        <!-- TRABAJO 04 -->
+        <div class="trabajo-card">
+          <div class="trabajo-img" style="background-image:url('assets/proyecto-04.jpg')">
+            <div class="trabajo-img-overlay"></div>
+            <span class="trabajo-num">04</span>
+          </div>
+          <div class="trabajo-body">
+            <div class="trabajo-cat">🔧 Sellos Mecánicos</div>
+            <h3>Reparación de Sellos Mecánicos Sencillos y Dobles</h3>
+            <p>Reparación de sellos mecánicos sencillos y dobles, a través del lapeado y pulido de caras de sellados, apegados a la norma API 682.</p>
+            <div class="trabajo-norm">API 682</div>
+          </div>
+        </div>
+
+        <!-- TRABAJO 05 -->
+        <div class="trabajo-card">
+          <div class="trabajo-img" style="background-image:url('assets/proyecto-05.jpg')">
+            <div class="trabajo-img-overlay"></div>
+            <span class="trabajo-num">05</span>
+          </div>
+          <div class="trabajo-body">
+            <div class="trabajo-cat">⚖️ Balanceo de Precisión</div>
+            <h3>Balanceo Dinámico de Rotores Industriales</h3>
+            <p>Balanceo dinámico de rotores de bombas, turbinas, motores y compresores, basados en la norma ISO 1940.</p>
+            <div class="trabajo-norm">ISO 1940</div>
+          </div>
+        </div>
+
+      </div><!-- /trabajos-grid -->
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="s-strip"><span class="chevs">&rsaquo;&rsaquo;&rsaquo;</span> Respaldo institucional y cumplimiento legal ·
+    API · ISO · NFPA &nbsp;·&nbsp; <strong>SERMICA</strong></div>
+
+  <!-- CTA -->
+  <div id="cta">
+    <div class="anim-up">
+      <h2>¿Su equipo necesita atención?</h2>
+      <p>Hable con nuestro equipo técnico y obtenga una respuesta rápida.</p>
+      <a href="#contact" class="btn-white-blue" id="main-cta">Solicitar Evaluación →</a>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="s-num" style="color:rgba(10,106,255,.06)">07</div>
+    <div class="contact-grid">
+      <div class="contact-info anim-left">
+        <div class="sec-lbl"><span class="chevs">&rsaquo;&rsaquo;&rsaquo;</span> Contáctenos</div>
+        <h2>Estamos listos<br>para <span
+            style="background:linear-gradient(135deg,var(--blue),var(--blue-l));-webkit-background-clip:text;-webkit-text-fill-color:transparent">actuar.</span>
+        </h2>
+        <p>Nuestro equipo técnico responde en menos de 24 horas. Atención en campo y taller para el sector petrolero,
+          petroquímico y de refinación en todo el territorio nacional.</p>
+        <div class="c-items">
+          <div class="c-item">
+            <div class="c-ico">📍</div>
+            <div class="c-txt"><strong>Ubicación</strong>Av. Jorge Rodríguez. C.C Brisas del Neverí. Local 3-C</div>
+          </div>
+          <div class="c-item">
+            <div class="c-ico">📞</div>
+            <div class="c-txt"><strong>Teléfono</strong>+58 412-1091554</div>
+          </div>
+          <div class="c-item">
+            <div class="c-ico">✉️</div>
+            <div class="c-txt"><strong>Correo</strong>Contrataciones@sermicavzla.com</div>
+          </div>
+          <div class="c-item">
+            <div class="c-ico">🕐</div>
+            <div class="c-txt"><strong>Disponibilidad</strong>Lunes–Viernes 8am–5pm</div>
+          </div>
+        </div>
+      </div>
+      <form class="c-form anim-right d1" id="cform" onsubmit="handleSubmit(event)">
+        <h3>Envíe su Requerimiento</h3>
+        <div class="f-row">
+          <div class="f-grp"><label for="nm">Nombre</label><input type="text" id="nm" placeholder="Juan Pérez"
+              required /></div>
+          <div class="f-grp"><label for="co">Empresa</label><input type="text" id="co"
+              placeholder="PDVSA / Pequiven…" /></div>
+        </div>
+        <div class="f-grp"><label for="em">Correo Electrónico</label><input type="email" id="em"
+            placeholder="juan@empresa.com" required /></div>
+        <div class="f-grp">
+          <label for="sv">Servicio de Interés</label>
+          <select id="sv">
+            <option value="">Seleccione un servicio…</option>
+            <option>Bombas Centrífugas</option>
+            <option>Motores Eléctricos y Diésel</option>
+            <option>Compresores</option>
+            <option>Cabezales de Pozo</option>
+            <option>Lubricación Industrial</option>
+            <option>Evaluaciones Predictivas</option>
+            <option>Balanceo Dinámico</option>
+            <option>Consulta General</option>
+          </select>
+        </div>
+        <div class="f-grp"><label for="ms">Descripción del Requerimiento</label><textarea id="ms"
+            placeholder="Describa el equipo, la falla o el tipo de servicio que requiere…"></textarea></div>
+        <button type="submit" class="btn-blue" id="sbtn" style="width:100%;font-size:.95rem;padding:.85rem">Enviar
+          Solicitud →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="s-strip"><span class="chevs">&rsaquo;&rsaquo;&rsaquo;</span> Somos tu aliado comercial y especialista de
+    confianza, somos <strong>SERMICA</strong></div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-top">
+      <div>
+        <div class="foot-logo"><img src="assets/sermica-logo.png" alt="SERMICA" /><span
+            class="logo-rif">J-40582887-0</span></div>
+        <p class="foot-tagline">¡Reparamos lo que impulsa tu mundo!</p>
+      </div>
+      <div class="foot-links">
+        <a href="#services">Servicios</a>
+        <a href="#why">Por Qué Nosotros</a>
+        <a href="#process">Proceso</a>
+        <a href="#contact">Contacto</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p class="foot-copy">© 2026 SERMICA – Servicios Mantenimiento Industriales, C.A. Todos los derechos reservados.
+      </p>
+      <div class="foot-badge">Sector <span>Petrolero &amp; Petroquímico</span> · Venezuela</div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Floating particles
+    const pc = document.getElementById('particles');
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.cssText = `left:${Math.random() * 100}%;bottom:${Math.random() * 40}%;--dur:${6 + Math.random() * 8}s;--delay:${Math.random() * 6}s`;
+      pc.appendChild(p);
+    }
+
+    // ── Scroll animations
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          // Process line trigger
+          if (e.target.id === 'pLine') e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.anim-up,.anim-left,.anim-right,#pLine').forEach(el => io.observe(el));
+
+    // ── Nav shadow on scroll
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').style.boxShadow =
+        window.scrollY > 50 ? '0 4px 28px rgba(10,106,255,.15)' : '0 2px 14px rgba(10,106,255,.07)';
+    });
+
+    // ── Counter animation util
+    function counter(el, target, suffix = '', duration = 1800) {
+      let start = null;
+      const run = ts => {
+        if (!start) start = ts;
+        const p = Math.min((ts - start) / duration, 1);
+        const e = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.floor(e * target);
+        if (p < 1) requestAnimationFrame(run); else el.textContent = target;
+      };
+      requestAnimationFrame(run);
+    }
+
+    // ── Trust counters
+    const trustIO = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        counter(document.getElementById('tn2'), 100);
+        trustIO.disconnect();
+      }
+    }, { threshold: .5 });
+    trustIO.observe(document.getElementById('trust'));
+
+    // ── Stats band counters
+    const sbIO = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        counter(document.getElementById('sb2'), 100);
+        counter(document.getElementById('sb3'), 100);
+        counter(document.getElementById('sb4'), 70);
+        sbIO.disconnect();
+      }
+    }, { threshold: .4 });
+    sbIO.observe(document.getElementById('stats-band'));
+
+    // ── Form submit
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('sbtn');
+      btn.textContent = '✓ Solicitud Enviada';
+      btn.style.background = '#16a34a';
+      btn.style.boxShadow = '0 6px 20px rgba(22,163,74,.4)';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Enviar Solicitud →';
+        btn.style.background = ''; btn.style.boxShadow = ''; btn.disabled = false;
+        e.target.reset();
+      }, 3500);
+    }
+  </script>
+</body>
+
+</html>
